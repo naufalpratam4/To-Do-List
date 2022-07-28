@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ToDoList</title>
+    <link rel="stylesheet" href="bootstrap.css" />
+    <style>
+      .main {
+        margin-top: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .yuk {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .done {
+        text-decoration: line-through;
+      }
+      li {
+        margin-left: 10px;
+        margin-top: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <nav class="navbar bg-dark">
+        <div class="container-fluid justify-content-center">
+          <a class="navbar-brand text-light" href="#">
+            <img src="https://cdn-icons-png.flaticon.com/512/4472/4472515.png" alt="" width="30" height="30" class="d-inline-block align-text-top" />
+            Todolist
+          </a>
+        </div>
+      </nav>
+    </header>
+
+    <div class="main">
+      <div class="card" style="width: 18rem">
+        <img src="https://cdn-icons-png.flaticon.com/512/4472/4472515.png" class="card-img-top" alt="..." />
+        <div class="card-body">
+          <p class="card-text yuk">Yuk produktif</p>
+          <div class="container">
+            <form action="#">
+              <div class="input-group flex-nowrap">
+                <span class="input-group-text" id="input-group">+</span>
+                <input type="text" class="form-control" placeholder="tambahkan" aria-label="Username" aria-describedby="addon-wrapping" id="new_text" />
+                <button type="button" class="btn btn-outline-primary add" onclick="add()">Add</button>
+              </div>
+            </form>
+          </div>
+          <ul id="todo"></ul>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const todo = document.getElementById("todo");
+      /* Fitur Todo : 
+    1. Menambahkan
+    2. mencoret
+    3. menghapus
+    */
+
+      const add = () => {
+        // ambil nilai teks
+        let newText = document.getElementById("new_text");
+
+        // tambahkan list baru ke dalam ul
+        let newTodo = "<li><span onclick='toggle(this)'>" + newText.value + "</span>" + "<span onclick='removeItem(this)'> [X] </span>" + "</li>";
+        todo.insertAdjacentHTML("afterbegin", newTodo);
+
+        // kosongkan field
+        newText.value = "";
+      };
+
+      const toggle = (el) => {
+        el.classList.toggle("done");
+      };
+
+      const removeItem = (el) => {
+        el.parentElement.remove();
+      };
+    </script>
+  </body>
+</html>
